@@ -1,0 +1,85 @@
+#command=$SCRIPT_DIR/$BLOCK_NAME
+#color=#E0E0E0
+
+#[song]
+#command=xprop -name "Spotify Premium - Linux Preview" _NET_WM_ICON_NAME|\cut -d "\"" -f 2|cut -b 11-
+#label=spot
+#interval=1
+#color=#2ebd59
+
+#[openvpn]
+#command=/home/booker/.i3/scripts/openvpn
+#interval=1
+#label=ovpn
+
+[load]
+command=/home/borche/.config/i3/scripts/load_average
+interval=10
+label=
+color=#FAA41A
+
+[cpu_usage]
+command=/home/borche/.config/i3/scripts/cpu_usage
+label=
+interval=5
+min_width=_100.00
+#separator=false
+color=#ffafff
+
+[memory]
+command=/home/borche/.config/i3/scripts/memory
+label=
+separator=true
+interval=15
+color=#48B9C7
+
+[disk]
+command=/home/borche/.config/i3/scripts/disk
+interval=60
+label=
+color=#ffffff
+
+[disk]
+command=/home/borche/.config/i3/scripts/disk
+interval=60
+instance=/media/borche/WD_green_500
+label=
+color=#7fd7ff
+
+# Temperature
+#
+# Support multiple chips, though lm-sensors.
+# The script may be called with -w and -c switches to specify thresholds,
+# see the script for details.
+[temperature]
+command=/home/borche/.config/i3/scripts/temperature --chip coretemp-isa-0000
+label=
+interval=15
+color=#5BFA3E
+
+[temperature]
+command=/home/borche/.config/i3/scripts/temperature --chip radeon-pci-0100
+label=
+interval=15
+color=#FAA41A
+
+[volume]
+command=/home/borche/.config/i3/scripts/volume
+label=
+interval=5
+color=#ffafff
+
+[date]
+command=date '+%d %B %Y'
+#label=     
+interval=30
+label= 
+color=#48B9C7
+
+[date]
+command=date '+%H:%M'
+#label=     
+interval=10
+label= 
+color=#FFFFFF
+
