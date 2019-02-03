@@ -8,6 +8,9 @@ THRESHOLD_DEBOUNCE=5            # 5 degree error toelrance to prevent constant o
 THRESHOLD_FAN_SILENT=$(($THRESHOLD_FAN_ACTIVE - $THRESHOLD_DEBOUNCE))
 TEMP_VALUES_DECIMAL_SPACES_MULTIPLYER=1000
 
+# before anything set gpu clock to high performance
+echo high > /sys/class/drm/card0/device/power_dpm_force_performance_level
+
 while true
 do
     #read GPU temp
@@ -15,6 +18,8 @@ do
     CURRENT_TEMP=$(($CURRENT_TEMP / $TEMP_VALUES_DECIMAL_SPACES_MULTIPLYER))
     
     # print info
+    echo "=========================================="
+    echo ""
     echo "ACTIVE:"
     echo $THRESHOLD_FAN_ACTIVE
 
@@ -37,7 +42,7 @@ do
     elif [ $CURRENT_TEMP -lt $THRESHOLD_FAN_SILENT ]
     then
         echo ""
-        echo "shuld switch to silent, temperature unter threshold"
+        echo "shuld switch to silent, temperature under threshold"
         echo 1 > /sys/class/drm/card0/device/hwmon/hwmon0/pwm1_enable
         echo 0  > /sys/class/drm/card0/device/hwmon/hwmon0/pwm1
     fi
