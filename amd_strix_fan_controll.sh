@@ -11,7 +11,7 @@ THRESHOLD_FAN_LOW_SPEED=$(($THRESHOLD_FAN_ACTIVE - $THRESHOLD_DEBOUNCE))
 TEMP_VALUES_DECIMAL_SPACES_MULTIPLYER=1000
 
 # before anything set gpu clock to high performance
-echo high > /sys/class/drm/card0/device/power_dpm_force_performance_level
+#echo high > /sys/class/drm/card0/device/power_dpm_force_performance_level
 
 while true
 do
@@ -54,19 +54,19 @@ do
         echo ""
         echo "shuld switch to low speed, temperature around threshold"
         echo 1 > /sys/class/drm/card0/device/hwmon/hwmon0/pwm1_enable
-        echo 30  > /sys/class/drm/card0/device/hwmon/hwmon0/pwm1
+        echo 90 > /sys/class/drm/card0/device/hwmon/hwmon0/pwm1             # +-900 RPM
     elif [ $CURRENT_TEMP -gt $THRESHOLD_FAN_VERY_LOW_SPEED ]
     then
         echo ""
         echo "shuld switch to very low speed, temperature around very lovest active threshold"
         echo 1 > /sys/class/drm/card0/device/hwmon/hwmon0/pwm1_enable
-        echo 15  > /sys/class/drm/card0/device/hwmon/hwmon0/pwm1
+        echo 74 > /sys/class/drm/card0/device/hwmon/hwmon0/pwm1             # +-740 RPM
     elif [ $CURRENT_TEMP -lt $THRESHOLD_FAN_SILENT ]
     then
         echo ""
         echo "shuld switch to silent, temperature under threshold"
         echo 1 > /sys/class/drm/card0/device/hwmon/hwmon0/pwm1_enable
-        echo 0  > /sys/class/drm/card0/device/hwmon/hwmon0/pwm1
+        echo 0 > /sys/class/drm/card0/device/hwmon/hwmon0/pwm1
     fi
     
     sleep 10
