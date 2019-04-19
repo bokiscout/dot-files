@@ -24,7 +24,7 @@ set ts=4
 set shiftwidth=4
 set hlsearch
 set cursorline
-hi CursorLine   cterm=NONE ctermbg=darkgray
+hi CursorLine   cterm=NONE ctermbg=8
 
 "configure netrw"
 let g:netrw_banner=0
